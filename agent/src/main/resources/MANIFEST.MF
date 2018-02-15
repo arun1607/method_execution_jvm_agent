@@ -1,1 +1,1 @@
-premain-Class: com.chimpler.example.agentmetric.MetricAgent
+premain-Class: com.learning.agent.MetricAgent

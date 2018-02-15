@@ -1,1 +1,1 @@
-include 'agent','agent-test'
+include 'agent','application'
