@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Version: unspecified
-Main-Class: com.learning.app.RunExample
-

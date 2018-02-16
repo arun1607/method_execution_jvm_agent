@@ -1,13 +1,50 @@
-allprojects {
-    repositories {
-        jcenter()
-    }
+repositories {
+    jcenter()
 }
-subprojects {
-    group 'com.learning.javaagent'
-    version '1.0.0'
-    apply plugin: 'java'
+group 'com.learning.javaagent'
+version '1.0.0'
+apply plugin: 'java'
+apply plugin: 'idea'
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+project.ext {
+    metricsVersion = '3.0.1'
 }
+dependencies {
+    compile 'javassist:javassist:3.12.1.GA'
+    compile "com.codahale.metrics:metrics-core:$metricsVersion"
+    compile "com.codahale.metrics:metrics-graphite:$metricsVersion"
+    compile "com.codahale.metrics:metrics-jvm:$metricsVersion"
+    compile "org.slf4j:slf4j-api:1.7.5"
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.5'
+
+//    compile "ch.qos.logback:logback-classic:1.0.13"
+//    compile "ch.qos.logback:logback-core:1.0.13"
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.4'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes(
+                'Premain-Class': 'com.learning.agent.MetricAgent',
+//                'Agent-Class': 'com.learning.agent.MetricAgent',
+                'Can-Redefine-Classes': 'true',
+                'Can-Retransform-Classes': 'true',
+                'Can-Set-Native-Method-Prefix': 'true',
+                'Implementation-Title': "ClassLogger",
+                'Implementation-Version': rootProject.version
+        )
+    }
+    baseName = 'agent-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+assemble.dependsOn(fatJar)
