@@ -1,10 +1,14 @@
-classes:
-  com.identityforge.idfserver.backend.tops.transport.TopsSocketConnection:
-      - getEncrypted
-      - processRequest
+ alias:
 
+   classes:
+     com.identityforge.idfserver.backend.tops.transport.TopsSocketConnection:
+         - getEncrypted
+         - processRequest
+     com.identityforge.idfserver.backend.acf2.transport.Acf2SocketConnection:
+         - getEncrypted
+         - processRequest
 
-graphite:
-  host: localhost
-  port: 2003
-  prefix: idfgateway
+ graphite:
+   host: localhost
+   port: 2003
+   prefix: idfgateway
