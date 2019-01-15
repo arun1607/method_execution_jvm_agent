@@ -88,7 +88,8 @@ public class Configuration {
     }
 
     public boolean isMethodAllowed(String className, String methodName) {
-        return classes.get(className).contains(methodName);
+        return classes.get(className).get(0).equalsIgnoreCase("*") || classes.get(className).contains(methodName);
+//        return true;
     }
 
 

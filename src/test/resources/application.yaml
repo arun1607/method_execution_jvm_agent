@@ -1,14 +1,29 @@
- alias:
-
    classes:
-     com.identityforge.idfserver.backend.tops.transport.TopsSocketConnection:
-         - getEncrypted
-         - processRequest
-     com.identityforge.idfserver.backend.acf2.transport.Acf2SocketConnection:
-         - getEncrypted
-         - processRequest
+      com.identityforge.idfserver.backend.rest.parser.RestParser:
+      - parseEntries
+      - convertToAttributes
+      - handleNestedJson
+      - handleNestedJson
+      - populateAttribute
+      com.identityforge.idfserver.backend.rest.ou.RestOrgUnit:
+      - readList
+      - processRequest
+      com.identityforge.idfserver.backend.rest.utils.JsonUtils:
+      - populateAttribute
+      - buildJsonPathQuery
+      com.identityforge.idfserver.backend.rest.repository.RestRepositoryImpl:
+      - invokeRestEndpoint
+      - processRequest
+      com.identityforge.idfserver.backend.azuread.ou.UsersOrgUnit:
+      - getEncrypted
+      - processRequest
+      com.identityforge.aad.adcl4j.AzureAdRepositoryImpl:
+      - getAllUsers
+      com.identityforge.aad.adcl4j.RestClientImpl:
+      - getAllEntries
+      - getRestEntity
 
- graphite:
-   host: localhost
-   port: 2003
-   prefix: idfgateway
+   graphite:
+      host: localhost
+      port: 2003
+      prefix: idfgateway
