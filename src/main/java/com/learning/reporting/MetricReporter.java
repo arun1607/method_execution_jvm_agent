@@ -69,13 +69,6 @@ public final class MetricReporter {
 
     public static void printExecutionTime(String name, long timeInMs) {
         logger.warn(" -------------------------------------------------");
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        StringBuilder callStack = new StringBuilder();
-        for (int i = 3; i < stackTraceElements.length; i++) {
-            StackTraceElement stackTraceElement = stackTraceElements[i];
-            callStack.append("\n\t").append(stackTraceElement.getClassName()).append(".").append(stackTraceElement.getMethodName()).append(":").append(stackTraceElement.getLineNumber());
-        }
-        logger.warn("Call trace is : " + callStack.toString());
         logger.warn(Thread.currentThread().getName() + " {} took {} milli seconds to execute", name, timeInMs);
         logger.warn(" -------------------------------------------------");
     }
