@@ -1,11 +1,1 @@
-.settings
-agent/target
-agent/.settings
-agent-test/target
-agent-test/.settings
-out/production/classes/MANIFEST.MF
-out/production/classes/log4j.properties
-out/test/classes/application.yaml
-src/main/java/com/learning/agent/
-src/main/java/com/learning/reporting/
-src/main/resources/
+
